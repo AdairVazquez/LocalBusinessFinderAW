@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+textarea{
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    height: 100px;
+}
+.containerr {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.form-section {
+    flex: 1;
+    padding-right: 20px;
+}
+.form-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+.form-section input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.form-section input:focus {
+    outline: none;
+    border-color: #5d99f6;
+}
+.form-section label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555;
+}
+.form-section label input[type="checkbox"] {
+    margin-right: 10px;
+}
+.form-section a {
+    color: #5d99f6;
+    text-decoration: none;
+}
+.form-section button {
+    width: 100%;
+    background-color: #5d99f6;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.form-section button:hover {
+    background-color: #4a86e8;
+}
+.image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image-section img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+.already-member {
+    text-align: right;
+    margin-top: 10px;
+}
+.already-member a {
+    font-size: 14px;
+    color: #333;
+}
+
+.cont {
+    display: flex; /* Flexbox para alinear los elementos en un renglón */
+    align-items: center;
+    gap: 15px; /* Espacio entre los elementos */
+    margin-top: 10px;
+}
+.contt input[type="text"] {
+    padding: 8px; /* Espacio interno para los campos */
+    width: 50%; /* Ancho de los campos */
+}
+
+.contt {
+    display: flex; /* Flexbox para alinear los elementos en un renglón */
+    align-items: center;
+    gap: 15px; /* Espacio entre los elementos */
+    margin-top: 10px;
+}
+
+.contt input[type="text"] {
+    padding: 8px; /* Espacio interno para los campos */
+    width: 50%; /* Ancho de los campos */
+}
+
+.contt p, .contt input {
+    display: none; /* Oculta los labels e inputs inicialmente */
+}
+
+.comb input[type="text"] {
+    padding: 8px; /* Espacio interno para los campos */
+    width: 100%; /* Ancho de los campos */
+    margin-top: 10px; /* Margen superior para separar */
+    margin-bottom: 10px;
+    display: none; /* Oculta el input inicialmente */
+}
+
+.comb select {
+    padding: 8px; /* Espacio interno para el combo box */
+    width: 100%; /* Ancho del combo box */
+    margin-top: 10px; /* Margen superior */
+    margin-bottom: 10px;
+}

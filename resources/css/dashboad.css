@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #6c0775, #fa7bfe);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    padding: 20px;
+}
+.container {
+    margin-left: 250px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+.main-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.profile-statistics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.stat-box {
+    background-color: #f0f4ff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.stat-box h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.stat-box p {
+    font-size: 16px;
+    color: #555;
+}
+.chart, .profile-visit, .latest-comments {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.chart h4, .profile-visit h4, .latest-comments h4 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+}
+.side-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 100%; /* Asegura que no se haga más grande que la pantalla */
+    box-sizing: border-box; /* Incluye padding y border en el ancho */
+}
+.profile-card {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.profile-card img {
+    width: 100px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.profile-card h3 {
+    font-size: 20px;
+}
+.profile-card p {
+    color: #777;
+    font-size: 14px;
+}
+.recent-messages {
+    margin-bottom: 20px;
+    max-width: 100%; /* Limita el ancho máximo */
+    box-sizing: border-box; /* Incluye padding y border en el ancho */
+    overflow-y: auto; /* Permite desplazamiento vertical si es necesario */
+}
+.recent-messages h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap; /* Asegura que los mensajes se ajusten dentro del contenedor */
+}
+.message img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.message p {
+    font-size: 12px;
+    word-break: break-word; /* Asegura que las palabras largas se ajusten dentro del contenedor */
+}
+.start-conversation {
+    background-color: #5d99f6;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.visitor-profile {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.visitor-profile h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.pie-chart {
+    background-color: #f0f4ff;
+    padding: 30px;
+    border-radius: 50%;
+    text-align: center;
+}
+.chart-container {
+    width: 70%;
+    max-width: 600px;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+  }
+  
+  .card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+  }
+  
+  .icon img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  
+  .value {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  .date-range, .growth {
+    font-size: 0.9em;
+    color: #888;
+  }
+  
+  .growth {
+    color: green;
+  }
+  
+  .chart {
+    text-align: left;
+  }
+  
+
+/* Estilos del menú lateral */
+  .sidebar {
+    height: 100vh; /* Altura total de la pantalla */
+    width: 50px; /* Ancho del menú */
+    background:  #37033b; /* Degradado de izquierda a derecha */
+    position: fixed; /* Fijado al lado izquierdo */
+    top: 0;
+    left: 0;
+    overflow-x: hidden; /* Evitar scroll horizontal */
+    padding-top: 20px;
+}
+
+/* Estilos de los enlaces dentro del menú */
+.sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+}
+.sidebar a i {
+    margin-right: 10px; /* Espacio entre el ícono y el texto */
+}
+
+/* Cambiar color al pasar el ratón */
+.sidebar a:hover {
+    background-color: #af39b9;
+}
+
+.sidebar img {
+    width: 40px; /* Ajusta el tamaño del logo */
+    margin-bottom: 20px; /* Espacio debajo del logo */
+    margin-left: 20px;
+    vertical-align: middle; /* Alinea verticalmente la imagen al centro del texto */
+    margin-right: 10px;
+}
+.sidebar p {
+    text-decoration: none;
+    font-size: 18px; /* Tamaño del texto */
+    display: flex;
+    align-items: center;
+    color: #f9f9f9;
+}
+
+/* Botón para abrir/cerrar el menú en pantallas pequeñas */
+.open-btn {
+    display: none;
+    background-color: #111;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Ocultar la barra lateral en pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 0;
+        transition: 0.3s;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .open-btn {
+        display: block;
+    }
+}
