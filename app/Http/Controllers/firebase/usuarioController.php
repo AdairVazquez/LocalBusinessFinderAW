@@ -60,6 +60,7 @@ class usuarioController extends Controller
         $contraseñaDB = $usuario['contraseña'];
 
         if (!empty($reference)) {
+            
             if($usuario['rol']=='administrador' && $usuario['contraseña']=='admin'){
                 if ($reference && $req->contraseña=='admin') {
                     // Crear una instancia del modelo User
@@ -85,30 +86,14 @@ class usuarioController extends Controller
     
                     Auth::login($user);
                     session(['user' => $reference]);
-
-                    return redirect('/admin');                
+    
+                    return redirect()->intended('homepage');
+                    
+                } else {
+                    return redirect('login')->with('status', 'Contraseña incorrecta :c');
                 }
             }
 
-
-            
-
-            if ($reference && Hash::check($req->contraseña, $contraseñaDB)) {
-                // Crear una instancia del modelo User
-                $user = new User([
-                    'email' => $usuario['correo'],
-                    'password' => $usuario['contraseña'],
-                    // agrega otros campos necesarios
-                ]);
-
-                Auth::login($user);
-                session(['user' => $reference]);
-
-                return redirect()->intended('homepage');
-                
-            } else {
-                return redirect('login')->with('status', 'Contraseña incorrecta :c');
-            }
         } else {
             return redirect('login')->with('status', 'No existe un usuario con este correo');
         }
