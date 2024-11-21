@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\firebase\usuarioController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\testController;
 use App\Http\Controllers\firebase\FirebaseUserController;
 use App\Http\Middleware\sessionAuth;
 use App\Http\Middleware\sessionAuthAdmin;
 
 use Laravel\Socialite\Facades\Socialite;
-
+ 
 Route::get('/', function () {
     return view('login');
 })->name('login');
@@ -39,6 +40,7 @@ use App\Http\Controllers\GoogleLoginController;
 Route::get('auth/google', [usuarioController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [usuarioController::class, 'handleGoogleCallback'])->name('auth.callback');
 
+Route::get('prueba', [testController::class, 'test']);
 
 Route::get('/login', function () {
     return view('login');
@@ -59,6 +61,9 @@ Route::middleware([sessionAuth::class])->group(function () {
     Route::post('registroTienda', [CategoriaController::class, 'agregarNuevaSubcategoria'])->name('categorias.subcat');
     Route::get('tusNegocios', [CategoriaController::class, 'ListaSubCategorias'])->name('subCategorias.store');    
 });
+
+
+
 
 //RUTAS ADMINISTRADOR
 

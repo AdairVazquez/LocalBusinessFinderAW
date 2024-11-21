@@ -11,12 +11,6 @@ return [
 
     'default' => env('FIREBASE_PROJECT', 'app'),
 
-
-    'connections' => [
-        'firebase' => [
-            'credentials' => env('FIREBASE_CREDENTIALS'),
-        ],
-    ],
     /*
      * ------------------------------------------------------------------------
      * Firebase project configurations

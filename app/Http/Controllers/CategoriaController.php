@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -12,73 +13,36 @@ use DateTime;
 
 class CategoriaController extends Controller
 {
-    
     protected $database;
     protected $storage;
 
-    public function __construct(Database $database)
+    public function __construct()
     {
-        \Dotenv\Dotenv::createImmutable(base_path())->load();
-        $firebaseCredentials = [
-            'type' => env('FIREBASE_TYPE'),
-            'project_id' => env('FIREBASE_PROJECT_ID'),
-            'private_key_id' => env('FIREBASE_PRIVATE_KEY_ID'),
-            'private_key' => str_replace("\\n", "\n", env('FIREBASE_PRIVATE_KEY')),
-            'client_email' => env('FIREBASE_CLIENT_EMAIL'),
-            'client_id' => env('FIREBASE_CLIENT_ID'),
-            'auth_uri' => env('FIREBASE_AUTH_URI'),
-            'token_uri' => env('FIREBASE_TOKEN_URI'),
-            'auth_provider_x509_cert_url' => env('FIREBASE_AUTH_PROVIDER_X509_CERT_URL'),
-            'client_x509_cert_url' => env('FIREBASE_CLIENT_X509_CERT_URL'),
-            'universe_domain' => env('FIREBASE_UNIVERSE_DOMAIN'),
+        // Cargar las credenciales de Firebase desde .env
+        $credentials = [
+            "type" => env('FIREBASE_TYPE'),
+            "project_id" => env('FIREBASE_PROJECT_ID'),
+            "private_key_id" => env('FIREBASE_PRIVATE_KEY_ID'),
+            "private_key" => str_replace("\\n", "\n", env('FIREBASE_PRIVATE_KEY')),
+            "client_email" => env('FIREBASE_CLIENT_EMAIL'),
+            "client_id" => env('FIREBASE_CLIENT_ID'),
+            "auth_uri" => env('FIREBASE_AUTH_URI'),
+            "token_uri" => env('FIREBASE_TOKEN_URI'),
+            "auth_provider_x509_cert_url" => env('FIREBASE_AUTH_PROVIDER_CERT_URL'),
+            "client_x509_cert_url" => env('FIREBASE_CLIENT_CERT_URL'),
         ];
 
-        $firebaseCredentialsJson = json_encode($firebaseCredentials);
-        // Aqui se cargan las credenciales y la URL desde el archivo .env
-         // Inicialización de Firebase Auth
-         $this->auth = (new Factory)
-         ->withServiceAccount($firebaseCredentialsJson)
-         ->createAuth();
-     
-     // Inicialización de Firebase Database
-     $this->database = (new Factory)
-         ->withServiceAccount($firebaseCredentialsJson)
-         ->withDatabaseUri('https://local-business-finder-yapp-default-rtdb.firebaseio.com/')
-         ->createDatabase();
-     
-     $this->tabla = 'categoria_negocio';
-
-     // Inicialización de Firebase Storage
-     $this->storage = (new Factory)
-         ->withServiceAccount($firebaseCredentialsJson)
-         ->createStorage();
-    }
-
-
-    public function testConnection()
-    {
-        // Cargar las credenciales desde el archivo JSON
+        // Crear la conexión a Firebase utilizando el Factory
         $firebase = (new Factory)
-            ->withServiceAccount($firebaseCredentialsJson)
-            ->withDatabaseUri('https://local-business-finder-yapp-default-rtdb.firebaseio.com/');
+            ->withServiceAccount($credentials)  // Autenticar con las credenciales
+            ->withDatabaseUri(env('FIREBASE_DATABASE_URL')); 
 
-        // Obtener la referencia de la base de datos
-        $database = $firebase->createDatabase();
-
-        // Escribir en la base de datos para probar la conexión
-        $newPost = $database
-            ->getReference('test')
-            ->set([
-                'title' => 'Prueba de conexión',
-                'body' => 'Conexión exitosa a Firebase Realtime Database desde Laravel'
-            ]);
-
-        // Leer los datos para verificar que se guardaron correctamente
-        $snapshot = $database->getReference('test')->getSnapshot();
-
-        // Devolver el resultado
-        return response()->json($snapshot->getValue());
+        // Inicializar la base de datos y la autenticación
+        $this->database = $firebase->createDatabase(); // Método para obtener la base de datos
+        $this->auth = $firebase->createAuth(); // Método para obtener la autenticación
+        $this->tabla = 'categoria_negocio';
     }
+
 
     public function listarCategorias()
     {
@@ -104,9 +68,9 @@ class CategoriaController extends Controller
             ]
         );
 
-        $imageUrl = $bucket->object($fileName)->signedUrl(new \DateTime('tomorrow'));
+        $imageUrl = $bucket->object($fileName)->signedUrl(new \DateTime('+6 months'));
 
-        $newCategory = $this->database
+        $newCategory = $this->databaseÑñÑ
             ->getReference('categoria_negocio')
             ->push([
                 'img_url' => $imageUrl,
@@ -131,7 +95,7 @@ class CategoriaController extends Controller
                     ]
                 );
 
-                $imageUrl = $bucket->object($fileName)->signedUrl(new \DateTime('tomorrow'));
+                $imageUrl = $bucket->object($fileName)->signedUrl(new \DateTime('+6 months'));
                 $categoria['img_url'] = $imageUrl; 
             }
             $categoria['info'] = $request->input('info');
