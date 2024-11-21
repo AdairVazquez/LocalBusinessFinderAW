@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -13,20 +12,37 @@ use DateTime;
 
 class CategoriaController extends Controller
 {
+    
     protected $database;
     protected $storage;
 
     public function __construct(Database $database)
     {
+        \Dotenv\Dotenv::createImmutable(base_path())->load();
+        $firebaseCredentials = [
+            'type' => env('FIREBASE_TYPE'),
+            'project_id' => env('FIREBASE_PROJECT_ID'),
+            'private_key_id' => env('FIREBASE_PRIVATE_KEY_ID'),
+            'private_key' => str_replace("\\n", "\n", env('FIREBASE_PRIVATE_KEY')),
+            'client_email' => env('FIREBASE_CLIENT_EMAIL'),
+            'client_id' => env('FIREBASE_CLIENT_ID'),
+            'auth_uri' => env('FIREBASE_AUTH_URI'),
+            'token_uri' => env('FIREBASE_TOKEN_URI'),
+            'auth_provider_x509_cert_url' => env('FIREBASE_AUTH_PROVIDER_X509_CERT_URL'),
+            'client_x509_cert_url' => env('FIREBASE_CLIENT_X509_CERT_URL'),
+            'universe_domain' => env('FIREBASE_UNIVERSE_DOMAIN'),
+        ];
+
+        $firebaseCredentialsJson = json_encode($firebaseCredentials);
         // Aqui se cargan las credenciales y la URL desde el archivo .env
          // Inicialización de Firebase Auth
          $this->auth = (new Factory)
-         ->withServiceAccount(config('firebase.connections.firebase.credentials'))
+         ->withServiceAccount($firebaseCredentialsJson)
          ->createAuth();
      
      // Inicialización de Firebase Database
      $this->database = (new Factory)
-         ->withServiceAccount(config('firebase.connections.firebase.credentials'))
+         ->withServiceAccount($firebaseCredentialsJson)
          ->withDatabaseUri('https://local-business-finder-yapp-default-rtdb.firebaseio.com/')
          ->createDatabase();
      
@@ -34,7 +50,7 @@ class CategoriaController extends Controller
 
      // Inicialización de Firebase Storage
      $this->storage = (new Factory)
-         ->withServiceAccount(config('firebase.connections.firebase.credentials'))
+         ->withServiceAccount($firebaseCredentialsJson)
          ->createStorage();
     }
 
@@ -43,7 +59,7 @@ class CategoriaController extends Controller
     {
         // Cargar las credenciales desde el archivo JSON
         $firebase = (new Factory)
-            ->withServiceAccount(config('firebase.connections.firebase.credentials'))
+            ->withServiceAccount($firebaseCredentialsJson)
             ->withDatabaseUri('https://local-business-finder-yapp-default-rtdb.firebaseio.com/');
 
         // Obtener la referencia de la base de datos
