@@ -181,7 +181,8 @@
 
 
 </div>
-<input type="hidden" id="count" value="{{$count}}">
+<input type="hidden" id="count" value="{{$numRegistros}}">
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     // Pasar datos de PHP a JavaScript
@@ -201,7 +202,7 @@
 
     console.log(countValue);
 
-    if(countValue === 0){
+    if(countValue == 0){
         modal.style.display = "block";
     }
 

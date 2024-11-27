@@ -211,6 +211,7 @@ class CategoriaController extends Controller
         $comentarios = [];
         $calificacionTotal = 0;
         $count = 0;
+
     
         if (is_array($subcategorias)) {
             foreach ($subcategorias as $idSubcategoria => $subcategoria) {
