@@ -3,12 +3,27 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\firebase\usuarioController;
 use App\Http\Controllers\CategoriaController;
+use App\Mail\ResetpasswordMailable;
 use App\Http\Controllers\testController;
 use App\Http\Controllers\firebase\FirebaseUserController;
 use App\Http\Middleware\sessionAuth;
 use App\Http\Middleware\sessionAuthAdmin;
 
 use Laravel\Socialite\Facades\Socialite;
+
+Route::get('restablecerPass',[usuarioController::class, 'resetPwd'])->name('restablecerPsw.index');
+Route::post('restablecerPass',[usuarioController::class, 'almacenar'])->name('restablecerPsw.almacenar');
+
+Route::get('resetPassword', function(){
+    Mail::to('alan.adaair@gmail.com')->send(new ResetpasswordMailable);
+    return 'ok';
+})->name('resetPassword');
+
+Route::post('envCorreo', [usuarioController::class, 'envCorreo'])->name('envCorreo');
+
+Route::get('/vistaRP', function () {
+    return view('emails.resetPassword');
+})->name('RP');
  
 Route::get('/', function () {
     return view('login');

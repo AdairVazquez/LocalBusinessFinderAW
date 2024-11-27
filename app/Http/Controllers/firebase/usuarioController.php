@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\firebase;
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Kreait\Firebase\Contract\Database;
 use App\Http\Controllers\Controller;
@@ -12,6 +13,8 @@ use Kreait\Firebase\Factory;
 use GuzzleHttp\Client;
 use App\Models\User;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Http;
+use App\Mail\ResetpasswordMailable;
 
 class usuarioController extends Controller
 {
@@ -45,6 +48,33 @@ class usuarioController extends Controller
         $this->tabla = 'usuario';
     }
 
+    public function envCorreo(Request $req){
+        $email = $req->email;
+        Mail::to($email)->send(new ResetpasswordMailable);
+        return view('login', ['status' => 'Mensaje de recuperación enviado a "'.$email.'"']);
+    }
+
+    public function resetPwd(){
+        return view('emails.resetPassword');
+    }
+
+    public function almacenar(Request $req){
+        return $req->all();
+    }
+
+    public function resetPassword(Request $request)
+    {
+        // Validar el correo
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        // Obtener el correo del formulario
+        $email = $request->input('email');
+
+        // Llamar al método para enviar el correo de recuperación
+        return $this->sendPasswordResetLink($email);
+    }
 
     public function login(Request $req)
     {

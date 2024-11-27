@@ -70,10 +70,16 @@
             <div>
                 <a href="{{route('homepage')}}" class="d-flex align-items-center"><i class="fas fa-home me-2"></i> Inicio</a>
                 <a href="{{route('subCategorias.store')}}" class="d-flex align-items-center active"><i class="fas fa-shop me-2"></i> Tiendas</a>
-                <a href="#clients" class="d-flex align-items-center"><i class="fas fa-user me-2"></i> Clientes</a>
             </div>
-            <!-- Elemento Contacto en la parte inferior -->
-            <a href="#" class="d-flex align-items-center mt-auto"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
+            
+            <!-- Formulario oculto -->
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+
+            <a href="#" class="d-flex align-items-center mt-auto" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt me-2"></i>
+                Cerrar Sesión
+            </a>
 
         </div>
     

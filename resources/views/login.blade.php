@@ -1,3 +1,15 @@
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,14 +69,15 @@
       </svg>
             </a>
             <h2>Recuperar contraseña</h2>
-            <form class="form">
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+            <form class="form" method="POST" action="{{route('envCorreo')}}">
+              @csrf
+              <p>Escribe tu correo en el siguente cuadro de texto, posteriormente se te enviará un correo para la recuperación de tu contraseña.</p>
               <div class="f_row last">
                 <label>Ingresa tu email</label>
-                <input type="text" class="input-field" required>
+                <input type="email" name="email" class="input-field" required>
                 <u></u>
               </div>
-              <button class="btn"><span>Recuperar</span><u></u>
+              <button class="btn" type="submit"><span>Recuperar</span><u></u>
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 415.582 415.582" xml:space="preserve">
                                       <path d="M411.47,96.426l-46.319-46.32c-5.482-5.482-14.371-5.482-19.853,0L152.348,243.058l-82.066-82.064
                                             c-5.48-5.482-14.37-5.482-19.851,0l-46.319,46.32c-5.482,5.481-5.482,14.37,0,19.852l138.311,138.31

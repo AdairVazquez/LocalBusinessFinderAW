@@ -11,7 +11,8 @@
         "kreait/laravel-firebase": "^5.9",
         "laravel/framework": "^11.9",
         "laravel/socialite": "^5.16",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "mailgun/mailgun-php": "^4.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

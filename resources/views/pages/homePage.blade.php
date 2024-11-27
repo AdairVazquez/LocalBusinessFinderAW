@@ -59,7 +59,7 @@
                 @csrf
             </form>
 
-            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt me-2"></i>
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="d-flex align-items-center mt-autoÑ"><i class="fas fa-sign-out-alt me-2"></i>
                 Cerrar Sesión
             </a>
 
