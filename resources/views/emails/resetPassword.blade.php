@@ -22,7 +22,7 @@
             <div class="form-section">
                 <h2>Restablece tu contraseña</h2>
                 <h5 style="color: red">* Si no solicitaste el cambio de tu contraseña, has caso omiso a este correo electrónico.</h5>
-                <form action="https:/localbusinessfinder/restablecerPass" class="form-data" method="post">
+                <form action="https://localbusinessfinder.site/restablecerPass" class="form-data" method="post">
                     @csrf 
                     <label for=""><b>Ingresa tu nueva contraseña</b><p style="color: red">*</p></label>
                     <input type="password" name="contraseña" placeholder="Nueva contraseña" required>
