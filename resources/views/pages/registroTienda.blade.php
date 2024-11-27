@@ -123,7 +123,7 @@ $id = null; // Inicializa la variable
             <h2>Registrar una tienda</h2>
             <h5 style="color: red">* Campos obligatorios </h5>
             <form action="{{route('categorias.subcat')}}" class="form-data" method="post" enctype="multipart/form-data">
-                @csrf
+                @csrf 
                 <input type="hidden" name="id_usuario" value="{{$id}}">
                 <label for=""><b>Nombre del negocio</b><p style="color: red">*</p></label>
                 <input type="text" name="nombre_negocio" placeholder="Nombre del negocio" required>

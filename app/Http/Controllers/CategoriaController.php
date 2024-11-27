@@ -40,6 +40,7 @@ class CategoriaController extends Controller
         // Inicializar la base de datos y la autenticación
         $this->database = $firebase->createDatabase(); // Método para obtener la base de datos
         $this->auth = $firebase->createAuth(); // Método para obtener la autenticación
+        $this->storage = $firebase->createStorage();// Inicializar el servicio de almacenamiento
         $this->tabla = 'categoria_negocio';
     }
 
@@ -130,6 +131,7 @@ class CategoriaController extends Controller
 
     public function agregarNuevaSubcategoria(Request $request)
     {
+        
         $categorias = $this->database->getReference('categoria_negocio')->getValue();
 
         if ($request->isMethod('post')) {
